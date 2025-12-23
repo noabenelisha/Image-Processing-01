@@ -1,0 +1,29 @@
+import sys
+import cv2
+# -*- coding: cp1252 -*-
+
+
+# בדיקה שהועבר שם קובץ
+if len(sys.argv) != 2:
+    print("Usage: python ex01_01.py image-filename")
+    sys.exit(-1)
+
+image_path = sys.argv[1]
+
+# קריאת התמונה
+img = cv2.imread(image_path)
+
+if img is None:
+    print(f"failed to read image from {image_path}")
+    sys.exit(-1)
+
+# פיצול לערוצי צבע (OpenCV עובד בסדר BGR)
+b, g, r = cv2.split(img)
+
+# הצגת הערוצים
+cv2.imshow("Blue channel", b)
+cv2.imshow("Green channel", g)
+cv2.imshow("Red channel", r)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
